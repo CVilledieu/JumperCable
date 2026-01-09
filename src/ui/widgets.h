@@ -12,8 +12,6 @@ typedef struct Widget {
     void (*layout)(void);
 } Widget;
 
-
-void initWidgets(struct nk_context *ctxPtr);
-void drawWidgets(void);
+void initWidgets(renderContext_t* renderContext);
 
 #endif

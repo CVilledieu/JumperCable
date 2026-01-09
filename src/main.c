@@ -9,8 +9,7 @@
 #define NK_GLFW_GL3_IMPLEMENTATION
 #define NK_KEYSTATE_BASED_INPUT
 
-#define DEFAULT_WINDOW_WIDTH 1200
-#define DEFAULT_WINDOW_HEIGHT 800
+
 #define MAX_VERTEX_BUFFER 512 * 1024
 #define MAX_ELEMENT_BUFFER 128 * 1024
 
@@ -21,13 +20,13 @@
 #include "nuklear.h"
 #include "nuklear_glfw_gl3.h"
 
-#include "layout/widgets.h"
+#include "ui/ui.h"
+#include "ui/widgets.h"
 
 
 
 static GLFWwindow *window = NULL;
 static struct nk_glfw glfw = {0};
-static struct nk_context *ctx;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void cleanupGui(void);
@@ -65,12 +64,8 @@ int main(void){
         return 1;
     }
 
-    ctx = nk_glfw3_init(&glfw, window, NK_GLFW3_INSTALL_CALLBACKS);
-    struct nk_font_atlas *atlas;
-    nk_glfw3_font_stash_begin(&glfw, &atlas);
-    nk_glfw3_font_stash_end(&glfw);
 
-    initWidgets(ctx);
+    initWidgets(&glfw, &window);
 
     while(!glfwWindowShouldClose(window)){
         glClear(GL_COLOR_BUFFER_BIT);
