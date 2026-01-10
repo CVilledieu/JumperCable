@@ -65,7 +65,7 @@ int main(void){
     }
 
 
-    initWidgets(&glfw, &window);
+    initWidgets(&glfw, window);
 
     while(!glfwWindowShouldClose(window)){
         glClear(GL_COLOR_BUFFER_BIT);

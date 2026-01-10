@@ -1,6 +1,6 @@
 #include "ui.h"
 
-static renderContext_t *renderContext = {0, {0.10f, 0.18f, 0.24f, 1.0f}};
+renderContext_t renderContext = {NULL, {0}, {0}, {0.10f, 0.18f, 0.24f, 1.0f}};
 
 #define MAX_WIDGETS 10
 static int widgetCount = 0;

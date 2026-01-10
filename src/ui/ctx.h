@@ -1,5 +1,5 @@
-#ifndef __UI_H__
-#define __UI_H__
+#ifndef __CTX_H__
+#define __CTX_H__
 
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
@@ -30,7 +30,8 @@
 #include <GLFW/glfw3.h>
 
 #include "nuklear_glfw_gl3.h"
-#include "widgets.h"
+
+extern renderContext_t g_renderContext;
 
 typedef struct renderContext {
     GLFWwindow *window;
@@ -39,9 +40,6 @@ typedef struct renderContext {
     struct nk_colorf bgColor;
 } renderContext_t;
 
-void initUi(struct nk_glfw *glfwPtr, GLFWwindow *windowPtr);
-
-int addWidget(Widget* widget);
-void drawUI(void);
+renderContext_t* init_RenderContext(void);
 
 #endif
