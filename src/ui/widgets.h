@@ -13,5 +13,7 @@ typedef struct Widget {
 } Widget;
 
 void initWidgets(renderContext_t* renderContext);
+void drawWidget(renderContext_t* ctx, Widget* widget);
+
 
 #endif

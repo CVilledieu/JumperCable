@@ -44,4 +44,5 @@ void initUi(struct nk_glfw *glfwPtr, GLFWwindow *windowPtr);
 int addWidget(Widget* widget);
 void drawUI(void);
 
+
 #endif

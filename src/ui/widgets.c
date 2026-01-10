@@ -17,6 +17,14 @@ void initWidgets(renderContext_t* renderContext) {
 
 }
 
+void drawWidget(renderContext_t* ctx, Widget* widget) {
+    if (nk_begin(ctx, widget->title, widget->bounds, widget->flags)) {
+        // Widget content goes here
+            widget->layout();
+        }
+    nk_end(ctx);
+}
+
 Widget* newWidget(const char* title, struct nk_rect bounds, nk_flags flags) {
     Widget* widget = (Widget*)malloc(sizeof(Widget));
     widget->id = addWidget(widget);
