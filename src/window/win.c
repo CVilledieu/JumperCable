@@ -1,5 +1,9 @@
-#include "ui/ui.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "ui/ctx.h"
+#include "win.h"
 
+GLFWwindow* mainWindow = NULL;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
@@ -10,7 +14,7 @@ void Window_ErrCallback(int error, const char* description) {
 }
 
 
-GLFWwindow* newWindowCtx(void) {
+void initMainWindow(void) {
     if (!glfwInit()) {
         fprintf(stderr, "Failed to initialize GLFW\n");
         exit(EXIT_FAILURE);
@@ -24,15 +28,15 @@ GLFWwindow* newWindowCtx(void) {
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
 
-    GLFWwindow *window = glfwCreateWindow(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT, "JumperCable", NULL, NULL);
-    if (!window) {
+    mainWindow = glfwCreateWindow(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT, "JumperCable", NULL, NULL);
+    if (!mainWindow) {
         fprintf(stderr, "Failed to create GLFW window\n");
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
 
-    glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwMakeContextCurrent(mainWindow);
+    glfwSetFramebufferSizeCallback(mainWindow, framebuffer_size_callback);
     glfwSetErrorCallback(Window_ErrCallback);
 
     glewExperimental = GL_TRUE;
@@ -42,6 +46,4 @@ GLFWwindow* newWindowCtx(void) {
         exit(EXIT_FAILURE);
     }
 
-
-    return window;
 }

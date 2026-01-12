@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-GLFWwindow* newWindowCtx(void);
+extern GLFWwindow* mainWindow;
+void initMainWindow(void) ;
 
 #endif
