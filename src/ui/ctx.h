@@ -18,24 +18,15 @@
 #define MAX_VERTEX_BUFFER 512 * 1024
 #define MAX_ELEMENT_BUFFER 128 * 1024
 
-#define DEFAULT_WINDOW_WIDTH 1200
-#define DEFAULT_WINDOW_HEIGHT 800
 
-#define HORIZONTAL_PADDING 20
-#define VERTICAL_PADDING 20
-
-#define MAX_WIDGETS 10
+extern struct nk_glfw glfw;
+extern struct nk_context *ctx;
+extern struct nk_colorf bgColor;
 
 
-typedef struct renderContext {
-    struct nk_context *ctx;
-    struct nk_colorf bgColor;
-} tRenderContext;
-
-extern tRenderContext g_renderContext;
 // Pre rendering setup functions
 void initRenderContext(void);
-void loadDefaultFont(void);
+
 
 // Main rendering functions
 void clearBuffer(void);

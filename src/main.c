@@ -1,11 +1,11 @@
 #include "ui/ctx.h"
 #include "window/win.h"
-
+#include "ui/components.h"
 
 int main(void){
     initMainWindow();
-    
     initRenderContext();
+    initComponents();
     
     while(!glfwWindowShouldClose(mainWindow)){
 

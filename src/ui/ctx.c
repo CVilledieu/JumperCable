@@ -5,30 +5,22 @@
 #include "window/win.h"
 #include "components.h"
 
-tRenderContext g_renderContext = {0};
-static struct nk_glfw glfw = {0};
+struct nk_glfw glfw = {0};
+struct nk_context *ctx = NULL;
+struct nk_colorf bgColor = {0};
 
 void initRenderContext(void) {
     nk_glfw3_init(&glfw, mainWindow, NK_GLFW3_INSTALL_CALLBACKS);
-    loadDefaultFont();
-    g_renderContext.ctx = &glfw.ctx;
-    g_renderContext.bgColor = (struct nk_colorf){0.10f, 0.18f, 0.24f, 1.0f};
-}
-
-void loadDefaultFont(void){
     struct nk_font_atlas *atlas;
     nk_glfw3_font_stash_begin(&glfw, &atlas);
     nk_glfw3_font_stash_end(&glfw);
+    ctx = &glfw.ctx;
+    bgColor = (struct nk_colorf){0.10f, 0.18f, 0.24f, 1.0f};
 }
-
-void initComponents(void) {
-    // Initialize any global state for components here if needed
-}
-
 
 
 void clearBuffer(void){
-    glClearColor(g_renderContext.bgColor.r, g_renderContext.bgColor.g, g_renderContext.bgColor.b, g_renderContext.bgColor.a);
+    glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
@@ -38,7 +30,7 @@ void setInputListeners(void) {
 }
 
 void renderComponents(void) {
-    SettingsComponent();
+    settingsComponent();
 
     nk_glfw3_render(&glfw, NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
 }
@@ -47,6 +39,6 @@ void renderComponents(void) {
 
 void endApp(void) {
     nk_glfw3_shutdown(&glfw);
-    glfwDestroyWindow(mainWindow);
+    glfwDestroyWindow(glfw.win);
     glfwTerminate();
 }

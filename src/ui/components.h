@@ -1,8 +1,7 @@
 #ifndef __COMPONENTS_H__
 #define __COMPONENTS_H__
 
-#define DEFAULT_FLAGS (NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE)
-
-void SettingsComponent(void);
+void initComponents(void);
+void settingsComponent(void);
 
 #endif
