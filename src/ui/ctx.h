@@ -26,7 +26,7 @@ extern struct nk_colorf bgColor;
 
 // Pre rendering setup functions
 void initRenderContext(void);
-
+void initComponents(void);
 
 // Main rendering functions
 void clearBuffer(void);

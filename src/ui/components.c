@@ -2,49 +2,46 @@
 #include "ctx.h"
 #include "nuklear.h"
 
-#define DEFAULT_FLAGS (NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE)
-
-#define WINDOW_PAD_X 20
-#define WINDOW_PAD_Y 20
-
-#define COMPONENT_PAD_X 10
-#define COMPONENT_PAD_Y 10
+#include "components/settings.h"
 
 
-void settingsComponent(void);
 
-void initComponents(void) {
-    // Initialize any global state for components here if needed
-    
+const float HEADER_HEIGHT = 30.0f;
+
+const float WINDOW_PAD_X = 10.0f;
+const float WINDOW_PAD_Y = 10.0f;
+
+static int SCREEN_COLS = 10;
+static int SCREEN_ROWS = 10;
+
+float calculateComponentHeight(int numRows, float rowHeight) {
+    return (numRows * rowHeight) + (2 * WINDOW_PAD_Y) + HEADER_HEIGHT;
 }
 
+float calculateComponentWidth(int numCols, float colWidth) {
+    return (numCols * colWidth)  + (2 * WINDOW_PAD_X);
+}
 
-void settingsComponent(void){
-    const char* title = "Settings";
+// Calculates width of component based on the percentage of screen it should take up.
+float calculateCompWidth(float percentageOfScreen){
+    float availableWidth = glfw.width - (2 * WINDOW_PAD_X);
+    float width = (availableWidth / 100) * percentageOfScreen;
+    return width;
+}
 
-    nk_flags flags =  NK_WINDOW_MINIMIZABLE |  NK_WINDOW_TITLE | NK_WINDOW_BORDER;
+float calculateCompHeight(float percentageOfScreen){
+    float availableHeight = glfw.height - (2 * WINDOW_PAD_Y);
+    float height = (availableHeight / 100) * percentageOfScreen;
+    return height;
+}
 
-    float componentWidth = 300;
-    float componentHeight = 200;
-    float xPos = glfw.width - componentWidth - WINDOW_PAD_X;
-    float yPos = WINDOW_PAD_Y;
-    
-    struct nk_rect bounds = {xPos, yPos, componentWidth, componentHeight};
+// void setStyling(){
+//     struct nk_rect header = nk_window_get_content_region(ctx);
+//     // Or check the style directly
+//     float header_height = ctx->style.window.header.min_size.y;
+// }
 
-    if (nk_begin(ctx, title, bounds, flags)){
-        // Component content goes here
-        nk_layout_row_dynamic(ctx, 30, 1);
-        nk_label(ctx, "Background:", NK_TEXT_LEFT);
 
-        nk_layout_row_dynamic(ctx, 30, 2);
-        if (nk_button_label(ctx, "Default"))
-            bgColor = (struct nk_colorf){0.10f, 0.18f, 0.24f, 1.0f};
-        if (nk_button_label(ctx, "Red"))
-            bgColor = (struct nk_colorf){1.0f, 0.0f, 0.0f, 1.0f};
-        if (nk_button_label(ctx, "Green"))
-            bgColor = (struct nk_colorf){0.0f, 1.0f, 0.0f, 1.0f};
-        if (nk_button_label(ctx, "Blue"))
-            bgColor = (struct nk_colorf){0.0f, 0.0f, 1.0f, 1.0f};
-    }
-    nk_end(ctx);
+struct nk_rect getBounds(){
+
 }

@@ -3,7 +3,8 @@
 
 #include "ctx.h"
 #include "window/win.h"
-#include "components.h"
+#include "components/settings.h"
+#include "components/display.h"
 
 struct nk_glfw glfw = {0};
 struct nk_context *ctx = NULL;
@@ -30,12 +31,16 @@ void setInputListeners(void) {
 }
 
 void renderComponents(void) {
+    displayComponent();
     settingsComponent();
-
+    
     nk_glfw3_render(&glfw, NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
 }
 
-
+void initComponents(void) {
+    // Initialize any global state for components here if needed
+    
+}
 
 void endApp(void) {
     nk_glfw3_shutdown(&glfw);
