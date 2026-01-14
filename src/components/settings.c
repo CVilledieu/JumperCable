@@ -35,7 +35,7 @@ void updateActiveTheme(int index) {
 
 void isMinimized(void){
     float width = 30;
-    float height = HEADER_HEIGHT;
+    float height = TITLE_BAR_HEIGHT;
     float xPos = glfw.width - width - WINDOW_PAD_X;
     float yPos = WINDOW_PAD_Y;
     

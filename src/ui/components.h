@@ -15,7 +15,7 @@ extern const float COMPONENT_PAD_Y;
 extern const float WINDOW_PAD_X;
 extern const float WINDOW_PAD_Y;
 
-extern const float HEADER_HEIGHT;
+extern const float TITLE_BAR_HEIGHT;
 
 float calculateComponentHeight(int numRows, float rowHeight);
 float calculateComponentWidth(int numCols, float colWidth);

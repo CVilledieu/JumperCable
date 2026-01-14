@@ -5,17 +5,16 @@
 #include "components/settings.h"
 
 
-
-const float HEADER_HEIGHT = 30.0f;
-
 const float WINDOW_PAD_X = 10.0f;
 const float WINDOW_PAD_Y = 10.0f;
 
-static int SCREEN_COLS = 10;
-static int SCREEN_ROWS = 10;
+const float TITLE_BAR_HEIGHT = 30.0f; 
+const float HEADER_HEIGHT = 30.0f;
+
+
 
 float calculateComponentHeight(int numRows, float rowHeight) {
-    return (numRows * rowHeight) + (2 * WINDOW_PAD_Y) + HEADER_HEIGHT;
+    return (numRows * rowHeight) + (2 * WINDOW_PAD_Y) + TITLE_BAR_HEIGHT;
 }
 
 float calculateComponentWidth(int numCols, float colWidth) {
@@ -40,8 +39,3 @@ float calculateCompHeight(float percentageOfScreen){
 //     // Or check the style directly
 //     float header_height = ctx->style.window.header.min_size.y;
 // }
-
-
-struct nk_rect getBounds(){
-
-}
